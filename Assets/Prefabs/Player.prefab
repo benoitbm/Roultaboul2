@@ -14,6 +14,10 @@ GameObject:
   - 54: {fileID: 5447714}
   - 114: {fileID: 11489018}
   - 114: {fileID: 11443808}
+  - 114: {fileID: 11421232}
+  - 114: {fileID: 11474622}
+  - 114: {fileID: 11403790}
+  - 114: {fileID: 11453362}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -28,7 +32,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.237095, y: 10.1, z: -2.55117}
+  m_LocalPosition: {x: -11.6, y: 10.59, z: 74.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -82,6 +86,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &11403790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f00ecd1045f89444a8bb7f3b879f8e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voidZone: 7
+  Camera: {fileID: 0}
+--- !u!114 &11421232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc217b1eca403b64a80dd4d613ade780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11443808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,6 +121,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa7e0829bc72c94babd728cc0466196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11453362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6afe3b7cd59d5e4c8bd8928b561ffea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 0}
+  PauseMenu: {fileID: 0}
+  UIGame: {fileID: 0}
+  Reprendre: {fileID: 0}
+  Quitter: {fileID: 0}
+--- !u!114 &11474622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985bf7ad4f73124498ab47c288047b39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HPMax: 100
 --- !u!114 &11489018
 MonoBehaviour:
   m_ObjectHideFlags: 1

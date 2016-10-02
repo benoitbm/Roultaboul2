@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class pauseMenu : MonoBehaviour {
 
@@ -12,8 +13,6 @@ public class pauseMenu : MonoBehaviour {
     bool enPause = false;
 
     private int choix = 0;
-    public Text Reprendre;
-    public Text Quitter;
 
 	// Use this for initialization
 	void Start () {
@@ -44,6 +43,10 @@ public class pauseMenu : MonoBehaviour {
         }
 	}
 
+    /// <summary>
+    /// Fonction appellée quand la souris passe par dessus d'un event trigger "Pointer Enter" (Voir éditeur)
+    /// </summary>
+    /// <param name="texte">Le texte où la souris rentre dedans.</param>
     public void HoverEnter(Text texte)
     { texte.color = Color.green; print("Entrée sur " + texte.gameObject.name); }
 
@@ -53,7 +56,10 @@ public class pauseMenu : MonoBehaviour {
     public void ReprendrePartie()
     { enPause = false; }
 
+    public void RecommencerNiveau()
+    { SceneManager.LoadScene(SceneManager.GetActiveScene().name); } //TODO : Rajouter écran confirmation
+
     public void QuitterJeu()
-    { Application.Quit(); }
+    { Application.Quit(); } //TODO : Rajouter Ecran Confirmation
 
 }
