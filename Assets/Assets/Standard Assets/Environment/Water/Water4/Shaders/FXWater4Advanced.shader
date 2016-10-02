@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with '_Object2World'
+
 Shader "FX/Water4" {
 Properties {
 	_ReflectionTex ("Internal reflection", 2D) = "white" {}
