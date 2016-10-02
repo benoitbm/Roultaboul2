@@ -7,6 +7,7 @@ TagManager:
   - Fire
   - Collect
   - Checkpoint
+  - Goal
   layers:
   - Default
   - TransparentFX

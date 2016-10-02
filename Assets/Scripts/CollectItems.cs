@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CollectItems : MonoBehaviour {
 
     private int collected = 0;
     private int toCollect = 1;
+
+    public string nextLevel;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +24,12 @@ public class CollectItems : MonoBehaviour {
             print(collected + "/" + toCollect);
             Destroy(other.gameObject);
         }
+
+        if (other.tag == "Goal" && percentageCollected() >= 1)
+        {
+            SceneManager.LoadScene(nextLevel);
+        }
+
     }
 	
 	public float percentageCollected()
