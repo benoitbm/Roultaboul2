@@ -24,12 +24,10 @@ public class CollectItems : MonoBehaviour {
             print(collected + "/" + toCollect);
             Destroy(other.gameObject);
         }
-
-        if (other.tag == "Goal" && percentageCollected() >= 1)
-        {
+        else if (other.tag == "Goal" && percentageCollected() >= 1)
             SceneManager.LoadScene(nextLevel);
-        }
-
+        else if (other.tag == "Checkpoint")
+            GetComponent<AdditionalControls>().setCheckpoint(other.GetComponentInParent<Checkpoint>());
     }
 	
 	public float percentageCollected()
