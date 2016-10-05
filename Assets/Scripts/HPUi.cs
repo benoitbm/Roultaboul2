@@ -6,15 +6,15 @@ public class HPUi : MonoBehaviour {
 
     public Image self;
     public playerHP player;
-    float fill = 0f;
-    float a = 0f;
+    float fill = 0f; //Pourcentage de santé du joueur.
+    float a = 0f; //Variable servant à contenir et modifier les valeurs de transparence de la barre de santé.
     float defaulta = 138f / 255f;
 
 	// Update is called once per frame
 	void Update () {
         fill = player.returnHP();
 
-        if (fill == 1.0f)
+        if (fill >= 1.0f)
         {
             if (a > 0)
                 a = a - Time.deltaTime/3;

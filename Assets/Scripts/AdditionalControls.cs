@@ -1,30 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
+/// <summary>
+/// Classe contenant les éléments de contrôle supplémentaires, comme les checkpoints.
+/// </summary>
 public class AdditionalControls : MonoBehaviour {
 
     //Plan Y où la balle sera TP au dernier checkpoint
     public float voidZone = 7;
     public Transform Camera;
 
+    float timePressedToRestart = 0.0f;
+    public float tempsRedemarrer = 2.0f;
+    public Image RestartClock;
+
     Checkpoint lastCheckpoint = null;
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.P))
-            Application.Quit();
 
-        if (gameObject.transform.position.y <= voidZone)
+        if (Input.GetKey(KeyCode.R)) //TODO : Rajouter un gestionnaire de touches + manettes
+            timePressedToRestart += Time.deltaTime;
+        else if (timePressedToRestart > 0)
+            timePressedToRestart -= Time.deltaTime * 3;
+        else
+            timePressedToRestart = 0.0f;
+
+        RestartClock.fillAmount = (timePressedToRestart / tempsRedemarrer);
+        if (timePressedToRestart / tempsRedemarrer >= 1.0f)
         {
-            var tempCheck = lastCheckpoint.transform.position;
-            tempCheck.y += 1;
-            gameObject.transform.position = tempCheck;
-            tempCheck.y += 10;
-            Camera.position = tempCheck;
-            gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero; //Re-initialise la vitesse à 0
+            respawn();
+            timePressedToRestart = 0f;
         }
+
+        if (gameObject.transform.position.y <= voidZone) //On teste si le joueur passe en dessous de la zone de jeu
+            respawn();
 	}
 
+    /// <summary>
+    /// Enregistre le checkpoint rencontré par le joueur.
+    /// </summary>
+    /// <param name="check">Checkpoint qui va devenir le point de réapparaition du joueur.</param>
     public void setCheckpoint(Checkpoint check)
     {
         print(check.name + " activé.");
@@ -33,5 +50,18 @@ public class AdditionalControls : MonoBehaviour {
 
         lastCheckpoint = check;
         lastCheckpoint.setCheckpointActive(false);
+    }
+
+    /// <summary>
+    /// Fonction faisant ré-apparaître le joueur au dernier checkpoint activé
+    /// </summary>
+    public void respawn()
+    {
+        var tempCheck = lastCheckpoint.transform.position;
+        tempCheck.y += 1;
+        gameObject.transform.position = tempCheck; //Déplacement du joueur
+        Camera.position = tempCheck; //Déplacement de la caméra
+
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero; //Re-initialise la vitesse à 0
     }
 }

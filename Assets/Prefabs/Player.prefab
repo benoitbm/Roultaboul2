@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   voidZone: 7
   Camera: {fileID: 0}
+  tempsRedemarrer: 2
+  RestartClock: {fileID: 0}
 --- !u!114 &11421232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc217b1eca403b64a80dd4d613ade780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevel: menuPrincipal
 --- !u!114 &11443808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,8 +138,6 @@ MonoBehaviour:
   background: {fileID: 0}
   PauseMenu: {fileID: 0}
   UIGame: {fileID: 0}
-  Reprendre: {fileID: 0}
-  Quitter: {fileID: 0}
 --- !u!114 &11474622
 MonoBehaviour:
   m_ObjectHideFlags: 1
