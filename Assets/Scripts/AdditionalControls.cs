@@ -16,11 +16,19 @@ public class AdditionalControls : MonoBehaviour {
     public Image RestartClock;
 
     Checkpoint lastCheckpoint = null;
+
+    Fading fade;
+    bool respawning = false;
+
+    void Start()
+    {
+        fade = FindObjectOfType<Fading>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKey(KeyCode.R)) //TODO : Rajouter un gestionnaire de touches + manettes
+        if (Input.GetKey(KeyCode.R) && !respawning) //TODO : Rajouter un gestionnaire de touches + manettes
             timePressedToRestart += Time.deltaTime;
         else if (timePressedToRestart > 0)
             timePressedToRestart -= Time.deltaTime * 3;
@@ -44,7 +52,6 @@ public class AdditionalControls : MonoBehaviour {
     /// <param name="check">Checkpoint qui va devenir le point de réapparaition du joueur.</param>
     public void setCheckpoint(Checkpoint check)
     {
-        print(check.name + " activé.");
         if (lastCheckpoint != null)
             lastCheckpoint.setCheckpointActive(true);
 
@@ -57,11 +64,31 @@ public class AdditionalControls : MonoBehaviour {
     /// </summary>
     public void respawn()
     {
+        respawning = true;
+        StartCoroutine(attenteRespawn());
+    }
+
+    /// <summary>
+    /// Fonction pour bloquer les mouvements du joueur
+    /// </summary>
+    public void sleep()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+    }
+
+    IEnumerator attenteRespawn()
+    {
+        fade.activateFadeIn();
+        yield return new WaitForSeconds(fade.tpsFadeIn());
+        fade.activateFadeOut();
+        
         var tempCheck = lastCheckpoint.transform.position;
-        tempCheck.y += 1;
+        tempCheck.y += .5f;
         gameObject.transform.position = tempCheck; //Déplacement du joueur
         Camera.position = tempCheck; //Déplacement de la caméra
 
-        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero; //Re-initialise la vitesse à 0
+        yield return new WaitForSeconds(fade.tpsFadeOut());
+        respawning = false;
     }
 }
