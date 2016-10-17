@@ -3,13 +3,12 @@ using System.Collections;
 
 public class GoalScript : MonoBehaviour {
 
-    CollectItems player;
+    public CollectItems player;
     public GameObject beacon;
 
     // Use this for initialization
     void Start () {
         beacon.SetActive(false);
-        player = FindObjectOfType<CollectItems>();
 	}
 	
 	// Update is called once per frame

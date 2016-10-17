@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class menuPrincipal : MonoBehaviour {
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
-
     /// <summary>
     /// Fonction appellée quand la souris passe par dessus d'un event trigger "Pointer Enter" (Voir éditeur)
     /// </summary>
