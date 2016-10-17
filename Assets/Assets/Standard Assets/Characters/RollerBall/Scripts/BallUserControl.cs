@@ -61,10 +61,6 @@ namespace UnityStandardAssets.Vehicles.Ball
                     move = (v * Vector3.forward + h * Vector3.right).normalized;
                 }
             }
-            else
-            {
-                GetComponent<Rigidbody>().Sleep();
-            }
         }
 
 

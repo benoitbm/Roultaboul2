@@ -4,17 +4,11 @@ using UnityEngine.UI;
 
 public class HPUi : MonoBehaviour {
 
-    Image self;
-    playerHP player;
+    public Image self;
+    public playerHP player;
     float fill = 0f; //Pourcentage de santé du joueur.
     float a = 0f; //Variable servant à contenir et modifier les valeurs de transparence de la barre de santé.
     float defaulta = 138f / 255f;
-
-    void Start()
-    {
-        player = FindObjectOfType<playerHP>();
-        self = GetComponent<Image>();
-    }
 
 	// Update is called once per frame
 	void Update () {
