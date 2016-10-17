@@ -30,6 +30,9 @@ public class pauseMenu : MonoBehaviour {
 
         if (enPause)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
             background.gameObject.SetActive(true);
             UIGame.SetActive(false);
 
@@ -41,6 +44,9 @@ public class pauseMenu : MonoBehaviour {
         }
         else
         { //Penser à désactiver tous les UI et réactiver celui du jeu (aka UIGame)
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+
             background.gameObject.SetActive(false);
             PauseMenu.SetActive(false);
             UIGame.SetActive(true);
@@ -68,6 +74,9 @@ public class pauseMenu : MonoBehaviour {
 
     public void RecommencerNiveau()
     { SceneManager.LoadScene(SceneManager.GetActiveScene().name); } //TODO : Rajouter écran confirmation
+
+    public void options()
+    { ReprendrePartie(); }
 
     public void menuPrincipal()
     { SceneManager.LoadScene("menuPrincipal"); } //TODO : Voir le todo au dessus et en dessous. J'appelle ça le todo sandwich.
