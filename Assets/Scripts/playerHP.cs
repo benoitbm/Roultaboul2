@@ -17,18 +17,24 @@ public class playerHP : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (takingDamage)
-            currentHP -= Time.deltaTime * dps;
-        else 
-            currentHP += Time.deltaTime * 2;
+        if (! GetComponent<AdditionalControls>().isRespawning())
+        {
+            if (takingDamage)
+                currentHP -= Time.deltaTime * dps;
+            else if (!takingDamage && Input.GetAxis("Sprint") < 0.1)
+                currentHP += Time.deltaTime * 2;
 
-        if (Input.GetKey(KeyCode.M))
-            currentHP -= 1;
+            if (Input.GetAxis("Sprint") >= 0.1)
+                currentHP -= Time.deltaTime * Input.GetAxis("Sprint") * 20;
 
-        if (currentHP >= HPMax)
-            currentHP = (float)HPMax;
-        else if (currentHP < 0)
-            dying();
+            if (Input.GetKey(KeyCode.M))
+                currentHP -= 1;
+
+            if (currentHP >= HPMax)
+                currentHP = (float)HPMax;
+            else if (currentHP < 0)
+                dying();
+        }
   
 	}
 
@@ -45,6 +51,12 @@ public class playerHP : MonoBehaviour {
     /// <param name="dmg">Dégâts à infliger.</param>
     public void takeDMG(float dmg)
     { currentHP -= Mathf.Abs(dmg); }
+
+    public void restoreHP(float HP)
+    { currentHP += Mathf.Abs(HP); }
+
+    public void restoreFullLife()
+    { currentHP = HPMax; }
 
     /// <summary>
     /// Fonction pour activer la prise de dégâts du joueur.

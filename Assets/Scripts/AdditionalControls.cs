@@ -28,7 +28,7 @@ public class AdditionalControls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKey(KeyCode.R) && !respawning) //TODO : Rajouter un gestionnaire de touches + manettes
+        if (Input.GetAxis("Restart") >= 1 && !respawning) //TODO : Rajouter un gestionnaire de touches + manettes
             timePressedToRestart += Time.deltaTime;
         else if (timePressedToRestart > 0)
             timePressedToRestart -= Time.deltaTime * 3;
@@ -82,7 +82,8 @@ public class AdditionalControls : MonoBehaviour {
         fade.activateFadeIn();
         yield return new WaitForSeconds(fade.tpsFadeIn());
         fade.activateFadeOut();
-        
+
+        GetComponent<playerHP>().restoreFullLife();
         var tempCheck = lastCheckpoint.transform.position;
         tempCheck.y += .5f;
         gameObject.transform.position = tempCheck; //Déplacement du joueur
@@ -91,4 +92,7 @@ public class AdditionalControls : MonoBehaviour {
         yield return new WaitForSeconds(fade.tpsFadeOut());
         respawning = false;
     }
+
+    public bool isRespawning()
+    { return respawning; }
 }
